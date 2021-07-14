@@ -1,0 +1,135 @@
+﻿<Window x:Class="InventoryApp.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:InventoryApp.ViewModel"
+        xmlns:local="clr-namespace:InventoryApp.View"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="450" 
+        Width="950"
+        Style="{StaticResource windowStyle}"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <vm:MainViewModel x:Key="vm"/>
+    </Window.Resources>
+    
+    <Border Background="{StaticResource BackgroundBlue}"
+            CornerRadius="10">
+        <DockPanel DataContext="{StaticResource vm}"
+                   Margin="10,5,10,10">
+            <DockPanel DockPanel.Dock="Top"
+                       Margin="0,0,0,5">
+                <StackPanel DockPanel.Dock="Right"
+                            Orientation="Horizontal">
+                    <Button x:Name="MinimizeButton" 
+                            Style="{StaticResource MinimizeButtonStyle}"
+                            Click="MinimizeButton_Click"/>
+                
+                    <Button x:Name="FullScreenButton" 
+                            Style="{StaticResource FullScreenButtonStyle}"
+                            Click="FullScreenButton_Click"/>
+
+                    <Button x:Name="CloseButton" 
+                            Style="{StaticResource CloseButtonStyle}"
+                            Click="CloseButton_Click"/>
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Left"
+                            HorizontalAlignment="Left"
+                            Orientation="Horizontal">
+                    <Image Source="/Images/MainIcon.png" Height="30"/>
+                    <TextBlock x:Name="AboutLink" 
+                               Text="About" 
+                               Style="{StaticResource LinkTextStyle}"
+                               VerticalAlignment="Center"
+                               TextDecorations="Underline"
+                               Margin="10,0,0,0"
+                               MouseLeftButtonDown="AboutLink_MouseLeftButtonDown"/>
+                </StackPanel>
+            </DockPanel>
+            
+            <DockPanel DockPanel.Dock="Left">
+                <StackPanel DockPanel.Dock="Top"
+                            Margin="0,0,5,0">
+                    <Button x:Name="AddProductButton" 
+                            Content="Add Product"
+                            Click="AddProductButton_Click"
+                            Style="{StaticResource ButtonStyle}"/>
+                    <Button x:Name="EditProductButton" 
+                            Content="Edit Product"
+                            Click="EditProductButton_Click"
+                            Style="{StaticResource ButtonStyle}"/>
+                    <Separator/>
+                    <Button x:Name="ProcessTransactionButton"
+                            Content="Process Transaction"
+                            Click="ProcessTransactionButton_Click"
+                            Style="{StaticResource ButtonStyle}"/>
+                    <Button Content="Show Transactions"
+                            Command="{Binding ShowTransactionsCommand}"
+                            Style="{StaticResource ButtonStyle}"/>
+                    <Separator/>
+                    <StackPanel>
+                        <ListView ItemsSource="{Binding Warehouses}"
+                                  SelectedValue="{Binding SelectedWarehouse, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  Style="{StaticResource ListViewStyle}"/>
+                        <Button x:Name="AddWarehouseButton" 
+                                Content="Add Warehouse"
+                                Click="AddWarehouseButton_Click"
+                                Style="{StaticResource ButtonStyle}"/>
+                        <Button x:Name="EditWarehouseButton" 
+                                Content="Edit Warehouse"
+                                Click="EditWarehouseButton_Click"
+                                Style="{StaticResource ButtonStyle}"/>
+
+                    </StackPanel>
+                </StackPanel>
+            </DockPanel>
+            <Grid>
+                <DataGrid ItemsSource="{Binding Products, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          Visibility="{Binding ProductsVis}"
+                          Style="{StaticResource DataGridStyle}" 
+                          SelectionChanged="DataGrid_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" 
+                                            Binding="{Binding ID}"/>
+                        <DataGridTextColumn Header="Product Name" 
+                                            Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Product Code" 
+                                            Binding="{Binding ProductCode}"/>
+                        <DataGridTextColumn Header="Warehouse No." 
+                                            Binding="{Binding WarehouseNo}"/>
+                        <DataGridTextColumn Header="Quantity" 
+                                            Binding="{Binding Quantity}"/>
+                        <DataGridTextColumn Header="Product Description" 
+                                            Binding="{Binding Description}"
+                                            Width="*"/>
+                    </DataGrid.Columns>
+
+                </DataGrid>
+                <DataGrid ItemsSource="{Binding Transactions}"
+                          Visibility="{Binding TransactionsVis}"
+                          Style="{StaticResource DataGridStyle}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" 
+                                            Binding="{Binding ID}"/>
+                        <DataGridTextColumn Header="Product" 
+                                            Binding="{Binding TargetProductName}"/>
+                        <DataGridTextColumn Header="Quantity" 
+                                            Binding="{Binding Quantity}"/>
+                        <DataGridCheckBoxColumn Header="Stock Adjustment"
+                                                Binding="{Binding StockAdjustment}"/>
+                        <DataGridTextColumn Header="Price Per Unit" 
+                                            Binding="{Binding PricePerUnit}"/>
+                        <DataGridTextColumn Header="Total"
+                                            Binding="{Binding TotalPrice}"/>
+                        <DataGridTextColumn Header="Time Processed"
+                                            Binding="{Binding TimeProcessed}"
+                                            Width="*"/>
+                    </DataGrid.Columns>
+                
+                </DataGrid>
+            </Grid>
+        </DockPanel>
+    </Border>
+</Window>

@@ -1,0 +1,69 @@
+﻿<Window x:Class="InventoryApp.View.EditProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:local="clr-namespace:InventoryApp.View"
+        mc:Ignorable="d"
+        Title="EditProductWindow" Height="450" Width="300">
+    <Window.Resources>
+        
+    </Window.Resources>
+    <Grid>
+        <Border CornerRadius="5"
+            Background="{StaticResource BackgroundBlue}">
+            <Grid Margin="5">
+
+                <StackPanel>
+                    <Label Content="Select Product to Edit"/>
+                    <ComboBox ItemsSource="{Binding Products, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedValue="{Binding SelectedProduct}">
+                        
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding Path=DisplayValuesCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ComboBox>
+
+                    <Label Content="Product Name"/>
+                    <TextBox Text="{Binding ProductName, UpdateSourceTrigger=PropertyChanged}"
+                             Style="{StaticResource TextBoxValidationStyle}"/>
+
+                    <Label Content="Product Code"/>
+                    <TextBox Text="{Binding ProductCode, UpdateSourceTrigger=PropertyChanged}"
+                             Style="{StaticResource TextBoxValidationStyle}"/>
+
+                    <Label Content="Product Description"/>
+                    <TextBox Height="60"
+                             Text="{Binding ProductDescription, UpdateSourceTrigger=PropertyChanged}"
+                             Style="{StaticResource TextBoxValidationStyle}"/>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Warehouse:"/>
+                        <Label Content="{Binding SelectedWarehouse, Mode=OneWay}"/>
+                    </StackPanel>
+
+                    <Label Content="Change to:"/>
+                    <ComboBox ItemsSource="{Binding Warehouses, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                              SelectedValue="{Binding SelectedWarehouse, UpdateSourceTrigger=PropertyChanged}"
+                              IsReadOnly="True"/>
+
+                    <DockPanel LastChildFill="False">
+                        <Button DockPanel.Dock="Right"
+                            Content="Confirm"
+                            Margin="5"
+                            Command="{Binding EditProductCommand}"
+                            IsEnabled="{Binding CanCreate}"/>
+                        <Button DockPanel.Dock="Right"
+                            Content="Cancel"
+                            Margin="5"
+                            Command="{Binding CloseCommand}"/>
+
+                    </DockPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

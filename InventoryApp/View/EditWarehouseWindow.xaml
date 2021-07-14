@@ -1,0 +1,44 @@
+﻿<Window x:Class="InventoryApp.View.EditWarehouseWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:local="clr-namespace:InventoryApp.View"
+        mc:Ignorable="d"
+        Title="EditWarehouseWindow" Height="200" Width="200">
+    <Grid>
+        <Border CornerRadius="5"
+                Background="{StaticResource BackgroundBlue}">
+            <StackPanel Margin="10">
+                <Label Content="Warehouse:"/>
+                <ComboBox ItemsSource="{Binding Warehouses, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedValue="{Binding SelectedWarehouse}"
+                          Margin="0,0,0,5">
+                    
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding Path=DisplayValuesCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    
+                </ComboBox>
+                <Label Content="Warehouse Name:"/>
+                <TextBox Style="{StaticResource TextBoxValidationStyle}"
+                         Text="{Binding WarehouseName, UpdateSourceTrigger=PropertyChanged}"/>
+                <DockPanel Margin="0,5,0,0">
+                    <Button Content="Cancel"
+                            Command="{Binding CloseCommand}"
+                            Style="{StaticResource ButtonStyle}"/>
+                    <Button Content="Delete"
+                            Command="{Binding DeleteWarehouseCommand}"
+                            Style="{StaticResource ButtonStyle}"/>
+                    <Button Content="Confirm"
+                            Command="{Binding EditWarehouseCommand}"
+                            Style="{StaticResource ButtonStyle}"
+                            IsEnabled="{Binding CanCreate, UpdateSourceTrigger=PropertyChanged}"/>
+                </DockPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

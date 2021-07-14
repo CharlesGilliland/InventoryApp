@@ -1,0 +1,136 @@
+﻿<Window x:Class="InventoryApp.View.ProcessTransactionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:vm="clr-namespace:InventoryApp.ViewModel"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InventoryApp.View" 
+        mc:Ignorable="d"
+        Title="ProcessTransactionWindow" 
+        Width="250"
+        Style="{StaticResource windowStyle}">
+    <StackPanel>
+        <Border CornerRadius="5"
+                Background="{StaticResource BackgroundBlue}">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Sale"
+                            Style="{StaticResource ButtonStyle}"
+                            Command="{Binding ShowSaleCommand}"/>
+                    <Button Content="Purchase"
+                            Style="{StaticResource ButtonStyle}"
+                            Command="{Binding ShowPurchaseCommand}"/>
+                    <Button Content="Stock Adjustment"
+                            Style="{StaticResource ButtonStyle}"
+                            Command="{Binding ShowStockAdjustmentCommand}"/>
+                </StackPanel>
+                <!--Sale-->
+                <StackPanel Visibility="{Binding SaleVis, UpdateSourceTrigger=PropertyChanged}">
+
+                    <Label Content="Select a Product"
+                       Margin="5"/>
+                    <ComboBox Margin="5"
+                          ItemsSource="{Binding Products}"
+                          SelectedValue="{Binding SaleSelectedProduct, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding UpdateQuantityCommand}"
+                                                       CommandParameter="{Binding SelectedProduct}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ComboBox>
+
+                    <Label Content="Select an Amount"
+                               Margin="5"/>
+                    <ComboBox Margin="5"
+                                  ItemsSource="{Binding Quantities}"
+                                  SelectedValue="{Binding SaleSelectedQuantity}"/>
+
+
+                    <Label Content="Price Per Unit"
+                               Margin="5"/>
+                    <TextBox Margin="5"
+                                 Text="{Binding SalePricePerUnit, StringFormat={}{0:C}}"
+                                 Style="{StaticResource TextBoxValidationStyle}"/>
+
+                </StackPanel>
+
+
+                <!--Purchase-->
+                <StackPanel Visibility="{Binding PurchaseVis, UpdateSourceTrigger=PropertyChanged}"
+                            Margin="5">
+                    <Label Content="Product Name"/>
+                    <TextBox Text="{Binding PurchaseProductName, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource TextBoxValidationStyle}"/>
+
+                    <Label Content="Product Code"/>
+                    <TextBox Text="{Binding PurchaseProductCode, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource TextBoxValidationStyle}"/>
+
+                    <Label Content="Product Description"/>
+                    <TextBox Height="60"
+                         Text="{Binding PurchaseProductDescription, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource TextBoxValidationStyle}"/>
+
+                    <Label Content="Warehouse"/>
+                    <ComboBox ItemsSource="{Binding Warehouses, UpdateSourceTrigger=PropertyChanged}"
+                         SelectedValue="{Binding SelectedWarehouse, UpdateSourceTrigger=PropertyChanged}"
+                          IsReadOnly="True"/>
+
+                    <Label Content="Quantity:"/>
+                    <TextBox Text="{Binding PurchaseQuantity, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource TextBoxValidationStyle}"/>
+
+
+                    <Label Content="Price Per Unit"
+                               Margin="5"/>
+                    <TextBox Margin="5"
+                             Text="{Binding PurchasePricePerUnit, StringFormat={}{0:C}}"
+                             Style="{StaticResource TextBoxValidationStyle}"/>
+                </StackPanel>
+
+
+                <!--Stock Adjustment-->
+                <StackPanel Visibility="{Binding StockAdjustmentVis, UpdateSourceTrigger=PropertyChanged}" 
+                            Margin="5">
+                    <Label Content="Select a Product"/>
+                    <ComboBox ItemsSource="{Binding Products}"
+                          SelectedValue="{Binding StockSelectedProduct, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding UpdateQuantityCommand}"
+                                                       CommandParameter="{Binding SelectedProduct}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ComboBox>
+
+                    <Label Content="Select an Amount"/>
+                    <ComboBox ItemsSource="{Binding Quantities}"
+                              SelectedValue="{Binding StockSelectedQuantity}"/>
+                    <Label Content="Comment"/>
+                    <TextBox Height="60"
+                         Text="{Binding StockComment, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource TextBoxValidationStyle}"/>
+
+                </StackPanel>
+
+
+                <DockPanel LastChildFill="False"
+                                       Margin="5">
+
+                    <Button Content="Submit"
+                        DockPanel.Dock="Right"
+                        Margin="5"
+                        Padding="3"
+                        Command="{Binding ProcessTransactionCommand}"/>
+                    <Button Content="Cancel"
+                        DockPanel.Dock="Right"
+                        Margin="5"
+                        Padding="3"
+                        Command="{Binding CloseCommand}"/>
+                </DockPanel>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Window>
