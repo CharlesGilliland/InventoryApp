@@ -246,12 +246,14 @@ namespace InventoryApp.ViewModel
 
             Products = new ObservableCollection<Product>();
             Quantities = new ObservableCollection<int>();
+            Warehouses = new ObservableCollection<Warehouse>();
 
             SaleVis = Visibility.Visible;
             PurchaseVis = Visibility.Collapsed;
             StockAdjustmentVis = Visibility.Collapsed;
 
             GetProducts();
+            GetWarehouses();
         }
         
 
@@ -274,6 +276,17 @@ namespace InventoryApp.ViewModel
                     Comment = ""
                 };
                 DatabaseAccessHelper.Insert(transaction);
+
+                int remainingQuantity = SaleSelectedProduct.Quantity - SaleSelectedQuantity;
+                if(remainingQuantity == 0)
+                {
+                    DatabaseAccessHelper.Delete(SaleSelectedProduct);
+                }
+                else
+                {
+                    saleSelectedProduct.Quantity = remainingQuantity;
+                    DatabaseAccessHelper.Update(SaleSelectedProduct);
+                }
             } 
             else if(PurchaseVis == Visibility.Visible)
             {
@@ -334,6 +347,17 @@ namespace InventoryApp.ViewModel
                     Comment = StockComment
                 };
                 DatabaseAccessHelper.Insert(transaction);
+
+                int remainingQuantity = StockSelectedProduct.Quantity - StockSelectedQuantity;
+                if (remainingQuantity == 0)
+                {
+                    DatabaseAccessHelper.Delete(SaleSelectedProduct);
+                }
+                else
+                {
+                    saleSelectedProduct.Quantity = remainingQuantity;
+                    DatabaseAccessHelper.Update(SaleSelectedProduct);
+                }
             }
 
             
@@ -347,6 +371,16 @@ namespace InventoryApp.ViewModel
             foreach(Product product in products)
             {
                 Products.Add(product);
+            }
+        }
+
+        public void GetWarehouses()
+        {
+            List<Warehouse> warehouses = DatabaseAccessHelper.Read<Warehouse>();
+            Warehouses.Clear();
+            foreach(Warehouse warehouse in warehouses)
+            {
+                Warehouses.Add(warehouse);
             }
         }
 
