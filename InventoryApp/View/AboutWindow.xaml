@@ -40,11 +40,11 @@
                                FontWeight="DemiBold"
                                TextDecorations="Underline"
                                Foreground="{StaticResource ButtonOrange}"/>
-                    <TextBlock Text="Inventory App was built to help business' track of stock levels whilst given them the ability to split up products between multiple warehouses."
+                    <TextBlock Text="Inventory App was built to help business' keep track of stock levels whilst given them the ability to split up products between multiple warehouses."
                                TextWrapping="Wrap"
                                Margin="0,0,0,5"
                                Foreground="{StaticResource ButtonOrange}"/>
-                    <TextBlock Text="Inventory App was built using .NET Core and Windows Presentation Foundation"
+                    <TextBlock Text="Inventory App was built by Charles Gilliland using Windows Presentation Foundation and targets .NET Core 3.1"
                                TextWrapping="Wrap"
                                Margin="0,0,0,5"
                                Foreground="{StaticResource ButtonOrange}"/>
