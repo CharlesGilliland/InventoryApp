@@ -28,15 +28,6 @@ namespace InventoryApp.View
             viewModel.GetWarehouses();
         }
 
-        private void AddProductButton_Click(object sender, RoutedEventArgs e)
-        {
-            AddProductWindow addProductWindow = new AddProductWindow();
-            addProductWindow.Owner = this;
-            addProductWindow.ShowDialog();
-
-            viewModel.GetProducts();
-        }
-
         private void ProcessTransactionButton_Click(object sender, RoutedEventArgs e)
         {
             ProcessTransactionWindow processTransactionWindow = new ProcessTransactionWindow();

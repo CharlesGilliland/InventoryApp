@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:InventoryApp.ViewModel"
+        xmlns:convert="clr-namespace:InventoryApp.Helper"
         xmlns:local="clr-namespace:InventoryApp.View"
         mc:Ignorable="d"
         Title="MainWindow" 
@@ -13,6 +14,7 @@
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <vm:MainViewModel x:Key="vm"/>
+        <convert:IntToTransactionConverter x:Key="IntToTransactionConverter"/>
     </Window.Resources>
     <Border Background="{StaticResource BackgroundBlue}"
             CornerRadius="10">
@@ -109,7 +111,7 @@
                             <DataGridTextColumn Header="Quantity" 
                                             Binding="{Binding Quantity}"/>
                             <DataGridTextColumn Header="Transaction Type"
-                                            Binding="{Binding TransactionTypeValue}"/>
+                                            Binding="{Binding TransactionTypeValue, Converter={StaticResource IntToTransactionConverter}}"/>
                             <DataGridTextColumn Header="Time Processed"
                                             Binding="{Binding TimeProcessed}"/>
                             <DataGridTextColumn Header="Price Per Unit" 

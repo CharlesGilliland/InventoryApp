@@ -14,7 +14,6 @@ namespace InventoryApp.ViewModel
     public class ProcessTransactionViewModel : ViewModelBase, INotifyDataErrorInfo
     {
         #region Fields
-        private TransactionType transactionType;
 
         // Sale
         private Product saleSelectedProduct;
