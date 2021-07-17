@@ -6,7 +6,9 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:InventoryApp.View"
         mc:Ignorable="d"
-        Title="EditWarehouseWindow" Height="200" Width="200">
+        Title="EditWarehouseWindow" Height="200" Width="200"
+        WindowStartupLocation="CenterOwner"
+        Style="{StaticResource windowStyle}">
     <Grid>
         <Border CornerRadius="5"
                 Background="{StaticResource BackgroundBlue}">

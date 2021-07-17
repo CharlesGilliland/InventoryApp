@@ -6,7 +6,9 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:InventoryApp.View"
         mc:Ignorable="d"
-        Title="EditProductWindow" Height="450" Width="300">
+        Title="EditProductWindow" Height="450" Width="300"
+        WindowStartupLocation="CenterOwner"
+        Style="{StaticResource windowStyle}">
     <Window.Resources>
         
     </Window.Resources>

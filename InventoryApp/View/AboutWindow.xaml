@@ -5,8 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InventoryApp.View"
         mc:Ignorable="d"
-        Title="AboutWindow" Height="450" Width="800">
+        Title="AboutWindow" Height="330" Width="220"
+        WindowStartupLocation="CenterOwner"
+        Style="{StaticResource windowStyle}">
     <Grid>
+        <Border CornerRadius="5"
+                Background="{StaticResource BackgroundBlue}">
+            <DockPanel>
+                <DockPanel DockPanel.Dock="Top"
+                       Margin="0,0,0,5">
+                    <StackPanel DockPanel.Dock="Right"
+                            Orientation="Horizontal">
+                        <Button x:Name="MinimizeButton" 
+                            Style="{StaticResource MinimizeButtonStyle}"
+                            Click="MinimizeButton_Click"/>
 
+                        <Button x:Name="FullScreenButton" 
+                            Style="{StaticResource FullScreenButtonStyle}"
+                            Click="FullScreenButton_Click"/>
+
+                        <Button x:Name="CloseButton" 
+                            Style="{StaticResource CloseButtonStyle}"
+                            Click="CloseButton_Click"/>
+                    </StackPanel>
+                    <StackPanel DockPanel.Dock="Left"
+                            HorizontalAlignment="Left"
+                            Orientation="Horizontal">
+                        <Image Source="/Images/MainIcon.png" Height="30"/>
+                    </StackPanel>
+                </DockPanel>
+                <StackPanel Margin="10">
+                    <TextBlock Text="About"
+                               FontSize="23"
+                               FontWeight="DemiBold"
+                               TextDecorations="Underline"
+                               Foreground="{StaticResource ButtonOrange}"/>
+                    <TextBlock Text="Inventory App was built to help business' track of stock levels whilst given them the ability to split up products between multiple warehouses."
+                               TextWrapping="Wrap"
+                               Margin="0,0,0,5"
+                               Foreground="{StaticResource ButtonOrange}"/>
+                    <TextBlock Text="Inventory App was built using .NET Core and Windows Presentation Foundation"
+                               TextWrapping="Wrap"
+                               Margin="0,0,0,5"
+                               Foreground="{StaticResource ButtonOrange}"/>
+                    <TextBlock Text="Icon images are sourced from https://icons8.com"
+                               TextWrapping="Wrap"
+                               Margin="0,0,0,5"
+                               Foreground="{StaticResource ButtonOrange}"/>
+                </StackPanel>
+                
+                
+            </DockPanel>
+
+        </Border>
     </Grid>
 </Window>

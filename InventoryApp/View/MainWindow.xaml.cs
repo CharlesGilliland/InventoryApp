@@ -28,6 +28,8 @@ namespace InventoryApp.View
             viewModel.GetWarehouses();
         }
 
+        
+
         private void ProcessTransactionButton_Click(object sender, RoutedEventArgs e)
         {
             ProcessTransactionWindow processTransactionWindow = new ProcessTransactionWindow();
@@ -77,12 +79,14 @@ namespace InventoryApp.View
         private void AboutLink_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             AboutWindow aboutWindow = new AboutWindow();
+            aboutWindow.Owner = this;
             aboutWindow.Show();
         }
 
         private void EditProductButton_Click(object sender, RoutedEventArgs e)
         {
             EditProductWindow editProductWindow = new EditProductWindow();
+            editProductWindow.Owner = this;
             editProductWindow.ShowDialog();
 
             viewModel.GetProducts();
@@ -91,6 +95,7 @@ namespace InventoryApp.View
         private void EditWarehouseButton_Click(object sender, RoutedEventArgs e)
         {
             EditWarehouseWindow editWarehouseWindow = new EditWarehouseWindow();
+            editWarehouseWindow.Owner = this;
             editWarehouseWindow.ShowDialog();
 
             viewModel.GetWarehouses();

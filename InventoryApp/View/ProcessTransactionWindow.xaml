@@ -9,6 +9,7 @@
         mc:Ignorable="d"
         Title="ProcessTransactionWindow" 
         Width="250"
+        WindowStartupLocation="CenterOwner"
         Style="{StaticResource windowStyle}">
     <StackPanel>
         <Border CornerRadius="5"
