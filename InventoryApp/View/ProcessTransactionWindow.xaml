@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:InventoryApp.View" 
         mc:Ignorable="d"
         Title="ProcessTransactionWindow" 
-        Width="250"
+        SizeToContent="WidthAndHeight"
         WindowStartupLocation="CenterOwner"
         Style="{StaticResource windowStyle}">
     <StackPanel>

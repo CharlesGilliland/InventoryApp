@@ -5,7 +5,6 @@ using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Media;
-using dotenv.net;
 
 namespace InventoryApp.ViewModel
 {
@@ -87,9 +86,6 @@ namespace InventoryApp.ViewModel
             LoginVis = Visibility.Visible;
             RegisterVis = Visibility.Collapsed;
             ButtonContent = "Register";
-
-            DotEnv.Load();
-            var envVars = DotEnv.Read();
         }
 
 

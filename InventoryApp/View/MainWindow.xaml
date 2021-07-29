@@ -8,10 +8,13 @@
         xmlns:local="clr-namespace:InventoryApp.View"
         mc:Ignorable="d"
         Title="MainWindow" 
-        Height="600" 
+        MinHeight="600" 
+        MinWidth="1200"
+        Height="600"
         Width="1200"
         Style="{StaticResource windowStyle}"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResizeWithGrip">
     <Window.Resources>
         <vm:MainViewModel x:Key="vm"/>
         <convert:IntToTransactionConverter x:Key="IntToTransactionConverter"/>

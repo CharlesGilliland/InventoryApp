@@ -6,7 +6,9 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:InventoryApp.View"
         mc:Ignorable="d"
-        Title="EditProductWindow" Height="450" Width="300"
+        Title="EditProductWindow"
+        SizeToContent="Height"
+        Width="250"
         WindowStartupLocation="CenterOwner"
         Style="{StaticResource windowStyle}">
     <Window.Resources>
@@ -57,11 +59,13 @@
                             Content="Confirm"
                             Margin="5"
                             Command="{Binding EditProductCommand}"
-                            IsEnabled="{Binding CanCreate}"/>
+                            IsEnabled="{Binding CanCreate}"
+                                Style="{StaticResource ButtonStyle}"/>
                         <Button DockPanel.Dock="Right"
                             Content="Cancel"
                             Margin="5"
-                            Command="{Binding CloseCommand}"/>
+                            Command="{Binding CloseCommand}"
+                                Style="{StaticResource ButtonStyle}"/>
 
                     </DockPanel>
                 </StackPanel>

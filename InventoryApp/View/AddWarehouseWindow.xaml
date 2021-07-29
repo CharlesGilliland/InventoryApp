@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:InventoryApp.View"
         mc:Ignorable="d"
         Title="AddWarehouseWindow"
-        Width="200"
-        Height="150"
+        SizeToContent="Height"
+        Width="250"
         WindowStartupLocation="CenterOwner"
         Style="{StaticResource windowStyle}">
     <Grid>

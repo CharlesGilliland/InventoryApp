@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InventoryApp.View"
         mc:Ignorable="d"
-        Title="AboutWindow" Height="330" Width="220"
+        Title="AboutWindow"
+        SizeToContent="Height"
+        Width="250"
         WindowStartupLocation="CenterOwner"
         Style="{StaticResource windowStyle}">
     <Grid>
